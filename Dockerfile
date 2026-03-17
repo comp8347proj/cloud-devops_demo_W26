@@ -21,11 +21,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # 7. Expose port 8000 (Django dev server)
-EXPOSE 8000
-#ENV PORT=8000
+#EXPOSE 8000
+ENV PORT=8000
 
 
 # 8. Command to run the app in the container
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-#CMD gunicorn mysite.wsgi:application --bind 0.0.0.0:${PORT}
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD gunicorn mysite.wsgi:application --bind 0.0.0.0:${PORT}
 
